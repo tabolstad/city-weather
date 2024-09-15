@@ -1,19 +1,10 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "City: %@" : {
-
-    },
-    "Feels Like: %lld" : {
-
-    },
-    "High: %lld" : {
+    "%@: " : {
 
     },
     "Idle" : {
-
-    },
-    "Low: %lld" : {
 
     },
     "search_placeholder_text" : {
@@ -27,8 +18,93 @@
         }
       }
     },
-    "Temperature: %lld" : {
-
+    "weather_detail_feels_like_temp_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feels like"
+          }
+        }
+      }
+    },
+    "weather_detail_high_temp_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
+          }
+        }
+      }
+    },
+    "weather_detail_humidity_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Humidity"
+          }
+        }
+      }
+    },
+    "weather_detail_low_temp_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        }
+      }
+    },
+    "weather_detail_pressure_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressure"
+          }
+        }
+      }
+    },
+    "weather_detail_temp_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature"
+          }
+        }
+      }
+    },
+    "weather_detail_wind_direction_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direction"
+          }
+        }
+      }
+    },
+    "weather_detail_wind_speed_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind Speed"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -29,6 +29,7 @@ struct SearchViewRepresentable: UIViewRepresentable {
     }
 }
 
+/// Text field for entering user search queries
 class SearchView: UIView {
 
     weak var delegate: SearchViewDelegate?

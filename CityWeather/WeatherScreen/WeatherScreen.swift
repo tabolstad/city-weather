@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View that handles the layout of weather content and loading states.
 struct WeatherScreen: View {
 
     var viewModel: WeatherScreenViewModel

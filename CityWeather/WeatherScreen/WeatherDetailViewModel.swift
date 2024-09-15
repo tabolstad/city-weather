@@ -17,6 +17,7 @@ class WeatherContentViewModel {
     weak var delegate: WeatherDetailDelegate?
 
     var weather: WeatherEntry
+    var temperatureUnit = "℉"
 
     internal init(weather: WeatherEntry) {
         self.weather = weather
@@ -26,20 +27,36 @@ class WeatherContentViewModel {
         weather.name
     }
 
-    var temperature: Int {
-        Int(weather.temperature.rounded())
+    var temperature: String {
+        String(Int(weather.temperature.rounded())) + temperatureUnit
     }
 
-    var tempFeelsLike: Int {
-        Int(weather.tempFeelsLike.rounded())
+    var tempFeelsLike: String {
+        String(Int(weather.tempFeelsLike.rounded())) + temperatureUnit
     }
 
-    var tempHigh: Int {
-        Int(weather.tempMax.rounded())
+    var tempHigh: String {
+        String(Int(weather.tempMax.rounded())) + temperatureUnit
     }
 
-    var tempLow: Int {
-        Int(weather.tempMin.rounded())
+    var tempLow: String {
+        String(Int(weather.tempMin.rounded())) + temperatureUnit
+    }
+
+    var humidity: String {
+        String(weather.humidity) + "%"
+    }
+
+    var pressure: String {
+        String(weather.pressure)
+    }
+
+    var windSpeed: String {
+        String(Int(weather.windSpeed.rounded())) + " mph"
+    }
+
+    var windDirection: String {
+        String(weather.windDirection) + "°"
     }
 
     var weatherIcon: URL? {
