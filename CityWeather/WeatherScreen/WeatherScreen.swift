@@ -24,13 +24,13 @@ struct WeatherScreen: View {
                 .frame(height: 44)
             switch viewModel.state {
             case .idle:
-                Text("Idle")
+                WeatherScreenLoadingView()
             case .loading:
-                ProgressView()
+                WeatherScreenLoadingView()
             case .finished:
                 WeatherScreenContentView(viewModel: viewModel)
             case .error(let error):
-                Text("Error \(error)")
+                WeatherScreenErrorView()
             }
             Spacer()
         }
@@ -39,23 +39,6 @@ struct WeatherScreen: View {
         .task {
             //await viewModel.getWeather(search: "Paris")
         }
-    }
-}
-
-struct WeatherScreenContentView: View {
-
-    var viewModel: WeatherScreenViewModel
-
-    internal init(viewModel: WeatherScreenViewModel) {
-        self.viewModel = viewModel
-    }
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            WeatherDetailView(viewModel: viewModel.contentViewModel)
-                .frame(maxWidth: .infinity)
-        }
-        .background(Color.blue)
     }
 }
 
@@ -73,6 +56,6 @@ struct WeatherScreenContentView: View {
 
 #Preview("Idle") {
     let viewModel = WeatherScreenViewModel()
-    viewModel.state = .idle
+    viewModel.state = .error(APIError.badRequest)
     return WeatherScreen(viewModel: viewModel)
 }

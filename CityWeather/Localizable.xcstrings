@@ -4,9 +4,6 @@
     "%@: " : {
 
     },
-    "Idle" : {
-
-    },
     "search_placeholder_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -102,6 +99,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wind Speed"
+          }
+        }
+      }
+    },
+    "weather_screen_error_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong, try searching again."
           }
         }
       }
