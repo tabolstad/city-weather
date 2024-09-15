@@ -47,7 +47,9 @@ class SearchView: UIView {
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 8
-        textField.font = UIFont.systemFont(ofSize: 24)
+        textField.font = UIFont.preferredFont(forTextStyle: .headline)
+        textField.adjustsFontForContentSizeCategory = true
+
         textField.delegate = self
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         textField.leftView = paddingView
