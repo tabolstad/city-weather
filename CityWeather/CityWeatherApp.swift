@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct CityWeatherApp: App {
 
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var weatherScreenViewModel = WeatherScreenViewModel()
 
     var body: some Scene {
