@@ -10,9 +10,9 @@ import SwiftUI
 /// View to display the weather data
 struct WeatherDetailView: View {
 
-    let viewModel: WeatherContentViewModel
+    let viewModel: WeatherDetailViewModel
 
-    internal init(viewModel: WeatherContentViewModel) {
+    internal init(viewModel: WeatherDetailViewModel) {
         self.viewModel = viewModel
     }
 

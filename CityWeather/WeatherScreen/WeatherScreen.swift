@@ -29,7 +29,7 @@ struct WeatherScreen: View {
                 WeatherScreenLoadingView()
             case .finished:
                 WeatherScreenContentView(viewModel: viewModel)
-            case .error(let error):
+            case .error:
                 WeatherScreenErrorView()
             }
             Spacer()

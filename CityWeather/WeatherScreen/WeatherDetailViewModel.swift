@@ -12,7 +12,7 @@ protocol WeatherDetailDelegate: AnyObject {
 }
 
 @Observable
-class WeatherContentViewModel {
+class WeatherDetailViewModel {
 
     weak var delegate: WeatherDetailDelegate?
 
@@ -48,7 +48,7 @@ class WeatherContentViewModel {
     }
 
     var pressure: String {
-        String(weather.pressure)
+        String(weather.pressure) + " hPa"
     }
 
     var windSpeed: String {
@@ -68,7 +68,7 @@ class WeatherContentViewModel {
     }
 }
 
-extension WeatherContentViewModel: SearchViewDelegate {
+extension WeatherDetailViewModel: SearchViewDelegate {
 
     func performSearch(city: String) {
         delegate?.performSearch(city: city)

@@ -18,10 +18,10 @@ enum LoadingState<Value> {
 
     var state: LoadingState<WeatherEntry> = .idle
     var api = OpenWeather()
-    var contentViewModel: WeatherContentViewModel
+    var contentViewModel: WeatherDetailViewModel
 
     internal init() {
-        self.contentViewModel = WeatherContentViewModel(weather: WeatherEntry.placeholder)
+        self.contentViewModel = WeatherDetailViewModel(weather: WeatherEntry.placeholder)
     }
 
     func getWeather(search: String) async {
