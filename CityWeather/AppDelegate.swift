@@ -8,8 +8,12 @@
 import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+
+    var launchManager: LaunchManager?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        print("Hello AppDelegate")
+
+        launchManager?.beginAppLaunch()
         return true
     }
 }

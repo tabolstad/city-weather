@@ -16,21 +16,41 @@ enum LoadingState<Value> {
 
 @Observable class WeatherScreenViewModel {
 
+    var userData: UserDataProtocol
     var state: LoadingState<WeatherEntry> = .idle
     var api: WeatherAPI
     var contentViewModel: WeatherDetailViewModel
 
-    internal init(api: WeatherAPI = OpenWeather()) {
+    internal init(api: WeatherAPI = OpenWeather(), userData: UserDataProtocol = UserData()) {
         self.api = api
+        self.userData = userData
         self.contentViewModel = WeatherDetailViewModel(weather: WeatherEntry.placeholder)
     }
 
-    func getWeather(search: String) async {
+    func getWeather(search: String) {
+
+        Task {
+            state = .loading
+
+            do {
+                let response = try await api.getWeather(city: search, state: nil)
+                Task { @MainActor in
+                    contentViewModel.weather = WeatherEntry(response: response)
+                    state = .finished
+                    userData.saveLastSeach(search)
+                }
+            } catch {
+                state = .error(error)
+            }
+        }
+    }
+
+    func getWeather(coordinates: WeatherEntry.Coordinates) async {
 
         state = .loading
 
         do {
-            let response = try await api.getWeather(city: search, state: nil)
+            let response = try await api.getWeather(longitude: coordinates.longitude, latitude: coordinates.latitude)
             Task { @MainActor in
                 contentViewModel.weather = WeatherEntry(response: response)
                 state = .finished
@@ -43,8 +63,6 @@ enum LoadingState<Value> {
 
 extension WeatherScreenViewModel: SearchViewDelegate {
     func performSearch(city: String) {
-        Task {
-            await getWeather(search: city)
-        }
+        getWeather(search: city)
     }
 }

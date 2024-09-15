@@ -113,6 +113,17 @@
           }
         }
       }
+    },
+    "weather_screen_idle_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for your city’s weather."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

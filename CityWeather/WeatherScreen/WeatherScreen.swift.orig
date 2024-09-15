@@ -36,6 +36,29 @@ struct WeatherScreen: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
+<<<<<<< Updated upstream
+=======
+        .task {
+            await viewModel.getWeather(search: "Paris")
+        }
+    }
+}
+
+struct WeatherScreenContentView: View {
+
+    var viewModel: WeatherScreenViewModel
+
+    internal init(viewModel: WeatherScreenViewModel) {
+        self.viewModel = viewModel
+    }
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            WeatherDetailView(viewModel: viewModel.contentViewModel)
+                .frame(maxWidth: .infinity)
+        }
+        .background(Color.blue)
+>>>>>>> Stashed changes
     }
 }
 

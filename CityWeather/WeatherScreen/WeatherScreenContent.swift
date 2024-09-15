@@ -44,13 +44,39 @@ struct WeatherScreenErrorView: View {
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
-            Image(systemName: "sun.max.trianglebadge.exclamationmark.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
-            Text("weather_screen_error_label".localized)
-                .font(.title)
-                .multilineTextAlignment(.center)
+            HStack {
+                Image(systemName: "sun.max.trianglebadge.exclamationmark.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 150)
+                Text("weather_screen_error_label".localized)
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+
+                Spacer()
+            }
+            Spacer()
+        }
+        .padding()
+    }
+}
+
+struct WeatherScreenIdleView: View {
+
+    var body: some View {
+        HStack {
+            Spacer()
+            VStack(alignment: .center) {
+                Spacer()
+                Image(systemName: "sun.max")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 150)
+                Text("weather_screen_idle_label".localized)
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
             Spacer()
         }
         .padding()
