@@ -12,7 +12,7 @@ class OpenWeather {
     static let apiKey = ""
     static let geocodeSearchUrl = "https://api.openweathermap.org/data/2.5/weather"
 
-    func getWeather(city: String, state: String) async throws -> WeatherResponse {
+    func getWeather(city: String, state: String?) async throws -> WeatherResponse {
 
         let urlSession = URLSession(configuration: .default)
 
