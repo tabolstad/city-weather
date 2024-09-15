@@ -27,19 +27,27 @@ class WeatherContentViewModel {
     }
 
     var temperature: Int {
-        Int(weather.main.temperature.rounded())
+        Int(weather.temperature.rounded())
     }
 
     var tempFeelsLike: Int {
-        Int(weather.main.tempFeelsLike.rounded())
+        Int(weather.tempFeelsLike.rounded())
     }
 
     var tempHigh: Int {
-        Int(weather.main.tempMax.rounded())
+        Int(weather.tempMax.rounded())
     }
 
     var tempLow: Int {
-        Int(weather.main.tempMin.rounded())
+        Int(weather.tempMin.rounded())
+    }
+
+    var weatherIcon: URL? {
+        if let weatherIcon = weather.weatherIcon {
+            return URL(string: weatherIcon)
+        } else {
+            return nil
+        }
     }
 }
 
