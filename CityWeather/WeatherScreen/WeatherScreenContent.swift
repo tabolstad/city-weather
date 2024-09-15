@@ -18,9 +18,11 @@ struct WeatherScreenContentView: View {
     var body: some View {
         VStack(alignment: .leading) {
             WeatherDetailView(viewModel: viewModel.contentViewModel)
+                .padding()
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(12)
                 .frame(maxWidth: .infinity)
         }
-        .background(Color.blue)
     }
 }
 

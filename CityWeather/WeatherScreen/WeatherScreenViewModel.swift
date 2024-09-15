@@ -29,9 +29,9 @@ enum LoadingState<Value> {
 
     func getWeather(search: String) {
 
-        Task {
-            state = .loading
+        state = .loading
 
+        Task {
             do {
                 let response = try await api.getWeather(city: search, state: nil)
                 Task { @MainActor in
@@ -45,18 +45,20 @@ enum LoadingState<Value> {
         }
     }
 
-    func getWeather(coordinates: WeatherEntry.Coordinates) async {
+    func getWeather(coordinates: WeatherEntry.Coordinates) {
 
         state = .loading
 
-        do {
-            let response = try await api.getWeather(longitude: coordinates.longitude, latitude: coordinates.latitude)
-            Task { @MainActor in
-                contentViewModel.weather = WeatherEntry(response: response)
-                state = .finished
+        Task {
+            do {
+                let response = try await api.getWeather(longitude: coordinates.longitude, latitude: coordinates.latitude)
+                Task { @MainActor in
+                    contentViewModel.weather = WeatherEntry(response: response)
+                    state = .finished
+                }
+            } catch {
+                state = .error(error)
             }
-        } catch {
-            state = .error(error)
         }
     }
 }

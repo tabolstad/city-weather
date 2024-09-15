@@ -32,36 +32,33 @@ struct WeatherDetailView: View {
                     DataPointView(label: "weather_detail_wind_speed_label".localized, value: viewModel.windSpeed)
                     DataPointView(label: "weather_detail_wind_direction_label".localized, value: viewModel.windDirection)
                 }
+                Spacer()
                 // AsyncImage and it's default cache should be sufficient for
                 // this simple use case. If more cache flexibility is needed
                 // or a more high performance scroll view is used, a library
                 // such as SDWebImage might be a better choice.
-                HStack {
-                    Spacer()
-                    AsyncImage(url: viewModel.weatherIcon) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
-                       default:
-                            Image(systemName: "sun.max.trianglebadge.exclamationmark.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 80, height: 80)
-                        }
+                AsyncImage(url: viewModel.weatherIcon) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                            .frame(width: 80, height: 80)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80, height: 80)
+                   default:
+                        Image(systemName: "sun.max.trianglebadge.exclamationmark.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80, height: 80)
                     }
-                    Spacer()
                 }
-                Spacer()
+                .padding()
             }
             Spacer()
         }
         .frame(maxWidth: .infinity)
-        .background(Color.red)
         .padding([.leading, .trailing], 0)
         .padding([.top, .bottom])
     }

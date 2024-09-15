@@ -51,6 +51,7 @@ class OpenWeather: WeatherAPI {
         // Build Request
         var url = URL(safe: Self.geocodeSearchUrl)
         let query = [
+            URLQueryItem(name: "appid", value: Self.apiKey),
             URLQueryItem(name: "lat", value: "\(latitude)"),
             URLQueryItem(name: "lon", value: "\(longitude)"),
             URLQueryItem(name: "units", value: "imperial")
