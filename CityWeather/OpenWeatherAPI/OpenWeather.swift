@@ -7,7 +7,7 @@
 
 import Foundation
 
-class OpenWeather {
+class OpenWeather: WeatherAPI {
 
     static let apiKey = ""
     static let geocodeSearchUrl = "https://api.openweathermap.org/data/2.5/weather"

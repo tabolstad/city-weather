@@ -17,10 +17,11 @@ enum LoadingState<Value> {
 @Observable class WeatherScreenViewModel {
 
     var state: LoadingState<WeatherEntry> = .idle
-    var api = OpenWeather()
+    var api: WeatherAPI
     var contentViewModel: WeatherDetailViewModel
 
-    internal init() {
+    internal init(api: WeatherAPI = OpenWeather()) {
+        self.api = api
         self.contentViewModel = WeatherDetailViewModel(weather: WeatherEntry.placeholder)
     }
 
