@@ -8,6 +8,7 @@
 import Foundation
 
 extension WeatherEntry {
+
     static var mock: WeatherEntry {
 
         let coord = WeatherEntry.Coordinates(

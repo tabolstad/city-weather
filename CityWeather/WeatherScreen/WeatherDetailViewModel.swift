@@ -7,11 +7,18 @@
 
 import Foundation
 
-class WeatherDetailViewModel {
+protocol WeatherDetailDelegate: AnyObject {
+    func performSearch(city: String)
+}
 
-    let weather: WeatherEntry
+@Observable
+class WeatherContentViewModel {
 
-    init(weather: WeatherEntry) {
+    weak var delegate: WeatherDetailDelegate?
+
+    var weather: WeatherEntry
+
+    internal init(weather: WeatherEntry) {
         self.weather = weather
     }
 
@@ -33,5 +40,12 @@ class WeatherDetailViewModel {
 
     var tempLow: Int {
         Int(weather.main.tempMin.rounded())
+    }
+}
+
+extension WeatherContentViewModel: SearchViewDelegate {
+
+    func performSearch(city: String) {
+        delegate?.performSearch(city: city)
     }
 }

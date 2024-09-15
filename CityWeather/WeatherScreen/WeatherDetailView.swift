@@ -9,21 +9,27 @@ import SwiftUI
 
 struct WeatherDetailView: View {
 
-    let viewModel: WeatherDetailViewModel
+    let viewModel: WeatherContentViewModel
 
-    internal init(viewModel: WeatherDetailViewModel) {
+    internal init(viewModel: WeatherContentViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("City: \(viewModel.name)")
-            Text("Temperature: \(viewModel.temperature)")
-            Text("High: \(viewModel.tempHigh)")
-            Text("Low: \(viewModel.tempLow)")
-            Text("Feels Like: \(viewModel.tempFeelsLike)")
+        HStack {
+            VStack(alignment: .leading) {
+                Text("City: \(viewModel.name)")
+                Text("Temperature: \(viewModel.temperature)")
+                Text("High: \(viewModel.tempHigh)")
+                Text("Low: \(viewModel.tempLow)")
+                Text("Feels Like: \(viewModel.tempFeelsLike)")
+                Spacer()
+            }
             Spacer()
         }
-        .padding()
+        .frame(maxWidth: .infinity)
+        .background(Color.red)
+        .padding([.leading, .trailing], 0)
+        .padding([.top, .bottom])
     }
 }

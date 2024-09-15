@@ -10,21 +10,40 @@ import Foundation
 enum LoadingState<Value> {
     case idle
     case loading
-    case finished(Value)
+    case finished
     case error(Error)
 }
 
 @Observable class WeatherScreenViewModel {
+
     var state: LoadingState<WeatherEntry> = .idle
     var api = OpenWeather()
+    var contentViewModel: WeatherContentViewModel
 
-    func getWeather() async {
+    internal init() {
+        self.contentViewModel = WeatherContentViewModel(weather: WeatherEntry.placeholder)
+    }
+
+    func getWeather(search: String) async {
+
         state = .loading
+
         do {
-            let response = try await api.getWeather(city: "Palatine", state: nil)
-            state = .finished(WeatherEntry(response: response))
+            let response = try await api.getWeather(city: search, state: nil)
+            Task { @MainActor in
+                contentViewModel.weather = WeatherEntry(response: response)
+                state = .finished
+            }
         } catch {
             state = .error(error)
+        }
+    }
+}
+
+extension WeatherScreenViewModel: SearchViewDelegate {
+    func performSearch(city: String) {
+        Task {
+            await getWeather(search: city)
         }
     }
 }
