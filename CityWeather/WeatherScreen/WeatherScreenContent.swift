@@ -17,11 +17,23 @@ struct WeatherScreenContentView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            WeatherDetailView(viewModel: viewModel.contentViewModel)
-                .padding()
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(12)
-                .frame(maxWidth: .infinity)
+            ViewThatFits {
+                // Fits normally - no scrolling
+                WeatherDetailView(viewModel: viewModel.contentViewModel)
+                    .padding()
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(12)
+                    .frame(maxWidth: .infinity)
+
+                // Doesn't fit - add scrolling so keyboard does not push the textfield offscreen.
+                ScrollView {
+                    WeatherDetailView(viewModel: viewModel.contentViewModel)
+                        .padding()
+                        .background(Color.gray.opacity(0.3))
+                        .cornerRadius(12)
+                        .frame(maxWidth: .infinity)
+                }
+            }
         }
     }
 }
