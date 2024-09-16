@@ -12,6 +12,7 @@ protocol SearchViewDelegate: AnyObject {
     func performSearch(city: String)
 }
 
+/// Hosting UIKit SearchView in SwiftUI
 struct SearchViewRepresentable: UIViewRepresentable {
     typealias UIViewType = SearchView
 

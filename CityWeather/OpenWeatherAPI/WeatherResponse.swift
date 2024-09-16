@@ -22,6 +22,22 @@ struct WeatherResponse: Decodable {
     let id: Int
     let name: String
     let cod: Int
+
+    internal init(coord: Coord, weather: [Weather], base: String, main: Main, visibility: Int, wind: Wind, clouds: Clouds, dt: Int, sys: Sys, timezone: Int, id: Int, name: String, cod: Int) {
+        self.coord = coord
+        self.weather = weather
+        self.base = base
+        self.main = main
+        self.visibility = visibility
+        self.wind = wind
+        self.clouds = clouds
+        self.dt = dt
+        self.sys = sys
+        self.timezone = timezone
+        self.id = id
+        self.name = name
+        self.cod = cod
+    }
 }
 
 // Coordinates
@@ -54,6 +70,7 @@ struct Main: Decodable {
 struct Wind: Decodable {
     let speed: Double
     let deg: Int
+    let gust: Double?
 }
 
 // Clouds information

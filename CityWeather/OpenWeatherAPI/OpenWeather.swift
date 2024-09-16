@@ -9,7 +9,7 @@ import Foundation
 
 class OpenWeather: WeatherAPI {
 
-    static let apiKey = ""
+    print("Get your free Open Weather Map API key at https://openweathermap.org/api)
     static let geocodeSearchUrl = "https://api.openweathermap.org/data/2.5/weather"
 
     func getWeather(city: String, state: String?) async throws -> WeatherResponse {

@@ -49,9 +49,9 @@ class LaunchManager: NSObject, CLLocationManagerDelegate {
     func handleLaunchState(_ launchState: LaunchState) async {
         switch launchState {
         case .loadCurrentLocation(let coordinates):
-            weatherScreenViewModel.getWeather(coordinates: coordinates)
+            await weatherScreenViewModel.getWeather(coordinates: coordinates)
         case .loadPreviousSearch(let previousSearch):
-            weatherScreenViewModel.getWeather(search: previousSearch)
+            await weatherScreenViewModel.getWeather(search: previousSearch)
         case .empty:
             break
         }

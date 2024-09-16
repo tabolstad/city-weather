@@ -34,44 +34,41 @@ enum LoadingState<Value> {
         self.enableLocation = userData.enableLocation
     }
 
-    func getWeather(search: String) {
+    func getWeather(search: String) async {
 
         state = .loading
 
-        Task {
-            do {
-                let response = try await api.getWeather(city: search, state: nil)
-                Task { @MainActor in
-                    detailViewModel.weather = WeatherEntry(response: response)
-                    state = .finished
-                    userData.saveLastSeach(search)
-                }
-            } catch {
-                state = .error(error)
-            }
+        do {
+            let response = try await api.getWeather(city: search, state: nil)
+            await handleWeatherResponse(response: response)
+        } catch {
+            state = .error(error)
         }
     }
 
-    func getWeather(coordinates: WeatherEntry.Coordinates) {
+    func getWeather(coordinates: WeatherEntry.Coordinates) async {
 
         state = .loading
 
-        Task {
-            do {
-                let response = try await api.getWeather(longitude: coordinates.longitude, latitude: coordinates.latitude)
-                Task { @MainActor in
-                    detailViewModel.weather = WeatherEntry(response: response)
-                    state = .finished
-                }
-            } catch {
-                state = .error(error)
-            }
+        do {
+            let response = try await api.getWeather(longitude: coordinates.longitude, latitude: coordinates.latitude)
+            await handleWeatherResponse(response: response)
+        } catch {
+            state = .error(error)
         }
+    }
+
+    @MainActor
+    private func handleWeatherResponse(response: WeatherResponse) async {
+        detailViewModel.weather = WeatherEntry(response: response)
+        state = .finished
     }
 }
 
 extension WeatherScreenViewModel: SearchViewDelegate {
     func performSearch(city: String) {
-        getWeather(search: city)
+        Task  {
+            await getWeather(search: city)
+        }
     }
 }
