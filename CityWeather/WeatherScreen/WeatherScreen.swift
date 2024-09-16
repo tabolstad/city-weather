@@ -10,7 +10,7 @@ import SwiftUI
 /// View that handles the layout of weather content and loading states.
 struct WeatherScreen: View {
 
-    var viewModel: WeatherScreenViewModel
+    @Bindable var viewModel: WeatherScreenViewModel
 
     internal init(viewModel: WeatherScreenViewModel) {
         self.viewModel = viewModel
@@ -28,7 +28,7 @@ struct WeatherScreen: View {
             case .loading:
                 WeatherScreenLoadingView()
             case .finished:
-                WeatherScreenContentView(viewModel: viewModel)
+                WeatherScreenContentView(viewModel: viewModel, enableLocation: $viewModel.enableLocation)
             case .error:
                 WeatherScreenErrorView()
             }

@@ -10,28 +10,38 @@ import SwiftUI
 struct WeatherScreenContentView: View {
 
     var viewModel: WeatherScreenViewModel
+    @Binding var enableLocation: Bool
 
-    internal init(viewModel: WeatherScreenViewModel) {
+    internal init(viewModel: WeatherScreenViewModel, enableLocation: Binding<Bool>) {
         self.viewModel = viewModel
+        self._enableLocation = enableLocation
     }
 
     var body: some View {
         VStack(alignment: .leading) {
             ViewThatFits {
                 // Fits normally - no scrolling
-                WeatherDetailView(viewModel: viewModel.contentViewModel)
-                    .padding()
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(12)
-                    .frame(maxWidth: .infinity)
-
-                // Doesn't fit - add scrolling so keyboard does not push the textfield offscreen.
-                ScrollView {
-                    WeatherDetailView(viewModel: viewModel.contentViewModel)
+                VStack {
+                    WeatherDetailView(viewModel: viewModel.detailViewModel)
                         .padding()
                         .background(Color.gray.opacity(0.3))
                         .cornerRadius(12)
                         .frame(maxWidth: .infinity)
+                    Toggle("enable_location_toggle".localized, isOn: $enableLocation)
+                        .tint(Color.accentColor)
+                }
+
+                // Doesn't fit - add scrolling so keyboard does not push the textfield offscreen.
+                ScrollView {
+                    VStack {
+                        WeatherDetailView(viewModel: viewModel.detailViewModel)
+                            .padding()
+                            .background(Color.gray.opacity(0.3))
+                            .cornerRadius(12)
+                            .frame(maxWidth: .infinity)
+                        Toggle("enable_location_toggle".localized, isOn: $enableLocation)
+                            .tint(Color.accentColor)
+                    }
                 }
             }
         }

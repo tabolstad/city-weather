@@ -59,7 +59,8 @@ class LaunchManager: NSObject, CLLocationManagerDelegate {
 
     func launchState() async -> LaunchState {
 
-        if let currentLocation = try? await getCurrentLocation() {
+        if userData.enableLocation,
+           let currentLocation = try? await getCurrentLocation() {
             return .loadCurrentLocation(currentLocation)
         } else if let previousSearch = userData.getLastSearch() {
             return .loadPreviousSearch(previousSearch)

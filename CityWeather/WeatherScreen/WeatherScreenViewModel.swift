@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum LoadingState<Value> {
     case idle
@@ -19,12 +20,18 @@ enum LoadingState<Value> {
     var userData: UserDataProtocol
     var state: LoadingState<WeatherEntry> = .idle
     var api: WeatherAPI
-    var contentViewModel: WeatherDetailViewModel
+    var detailViewModel: WeatherDetailViewModel
+    var enableLocation: Bool {
+        didSet {
+            userData.enableLocation = enableLocation
+        }
+    }
 
     internal init(api: WeatherAPI = OpenWeather(), userData: UserDataProtocol = UserData()) {
         self.api = api
         self.userData = userData
-        self.contentViewModel = WeatherDetailViewModel(weather: WeatherEntry.placeholder)
+        self.detailViewModel = WeatherDetailViewModel(weather: WeatherEntry.placeholder)
+        self.enableLocation = userData.enableLocation
     }
 
     func getWeather(search: String) {
@@ -35,7 +42,7 @@ enum LoadingState<Value> {
             do {
                 let response = try await api.getWeather(city: search, state: nil)
                 Task { @MainActor in
-                    contentViewModel.weather = WeatherEntry(response: response)
+                    detailViewModel.weather = WeatherEntry(response: response)
                     state = .finished
                     userData.saveLastSeach(search)
                 }
@@ -53,7 +60,7 @@ enum LoadingState<Value> {
             do {
                 let response = try await api.getWeather(longitude: coordinates.longitude, latitude: coordinates.latitude)
                 Task { @MainActor in
-                    contentViewModel.weather = WeatherEntry(response: response)
+                    detailViewModel.weather = WeatherEntry(response: response)
                     state = .finished
                 }
             } catch {

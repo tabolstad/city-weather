@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Representation of the weather data for a single weather screen
 struct WeatherEntry {
 
     let id: Int

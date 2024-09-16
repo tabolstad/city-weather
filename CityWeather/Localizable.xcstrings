@@ -4,6 +4,17 @@
     "%@: " : {
 
     },
+    "enable_location_toggle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable Location"
+          }
+        }
+      }
+    },
     "search_placeholder_text" : {
       "extractionState" : "manual",
       "localizations" : {
