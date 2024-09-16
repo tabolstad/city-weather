@@ -65,6 +65,8 @@ struct WeatherScreenLoadingView: View {
 
 struct WeatherScreenErrorView: View {
 
+    let error: Error
+
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
@@ -73,7 +75,7 @@ struct WeatherScreenErrorView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 150, height: 150)
-                Text("weather_screen_error_label".localized)
+                Text(errorMessage)
                     .font(.title)
                     .multilineTextAlignment(.center)
 
@@ -82,6 +84,15 @@ struct WeatherScreenErrorView: View {
             Spacer()
         }
         .padding()
+    }
+
+    var errorMessage: String {
+        switch error {
+        case APIError.invalidApiKey:
+            "weather_screen_access_error_label".localized
+        default:
+            "weather_screen_error_label".localized
+        }
     }
 }
 

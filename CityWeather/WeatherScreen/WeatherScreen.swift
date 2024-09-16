@@ -29,8 +29,8 @@ struct WeatherScreen: View {
                 WeatherScreenLoadingView()
             case .finished:
                 WeatherScreenContentView(viewModel: viewModel, enableLocation: $viewModel.enableLocation)
-            case .error:
-                WeatherScreenErrorView()
+            case .error(let error):
+                WeatherScreenErrorView(error: error)
             }
             Spacer()
         }
@@ -51,8 +51,14 @@ struct WeatherScreen: View {
     return WeatherScreen(viewModel: viewModel)
 }
 
-#Preview("Idle") {
+#Preview("Error") {
     let viewModel = WeatherScreenViewModel()
     viewModel.state = .error(APIError.badRequest)
+    return WeatherScreen(viewModel: viewModel)
+}
+
+#Preview("Idle") {
+    let viewModel = WeatherScreenViewModel()
+    viewModel.state = .idle
     return WeatherScreen(viewModel: viewModel)
 }

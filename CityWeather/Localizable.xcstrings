@@ -114,6 +114,17 @@
         }
       }
     },
+    "weather_screen_access_error_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API access is invalid."
+          }
+        }
+      }
+    },
     "weather_screen_error_label" : {
       "extractionState" : "manual",
       "localizations" : {
