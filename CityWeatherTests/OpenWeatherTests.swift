@@ -10,13 +10,13 @@ import Testing
 
 struct OpenWeatherTests {
 
-    @Test func testBuildingLocationStringWithState() async throws {
+    @Test func buildLocationStringWithState() async throws {
         let api = OpenWeather()
         let location = api.buildLocation(city: "Cleveland", state: "OH")
         #expect(location == "Cleveland,OH")
     }
 
-    @Test func testBuildingLocationStringWithoutState() async throws {
+    @Test func buildLocationStringWithoutState() async throws {
         let api = OpenWeather()
         let location = api.buildLocation(city: "Cleveland", state: nil)
         #expect(location == "Cleveland")

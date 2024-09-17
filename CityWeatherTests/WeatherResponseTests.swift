@@ -12,7 +12,7 @@ import Testing
 
 struct WeatherResponseTests {
 
-    @Test func testWeatherResponseDecoding() async throws {
+    @Test func decoding() async throws {
 
         let response: WeatherResponse = try TestData.json("weather_response")
 

@@ -12,7 +12,7 @@ import Testing
 
 struct WeatherDetailViewModelTests {
 
-    @Test func testWeatherViewModelData() async throws {
+    @Test func initializationFromResponse() async throws {
 
         let response: WeatherResponse = try TestData.json("weather_response")
         let entry = WeatherEntry(response: response)
